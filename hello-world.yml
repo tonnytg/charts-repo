@@ -34,15 +34,8 @@ spec:
           limits:
             cpu: 100m
             memory: 100Mi
-        livenessProbe:
           tcpSocket:
             port: 80
-          initialDelaySeconds: 5
-          timeoutSeconds: 5
-          successThreshold: 1
-          failureThreshold: 3
-          periodSeconds: 10
-        readinessProbe:
           httpGet:
             path: /_status/healthz
             port: 80
@@ -51,29 +44,9 @@ spec:
           successThreshold: 1
           failureThreshold: 3
           periodSeconds: 10
-        env:
-        - name: MY_NAME
-          valueFrom:
-            configMapKeyRef:
-              name: webserver
-              key: MY_NAME
         ports:
         - containerPort:  80
           name:  webserver
         volumeMounts:
         - name: localtime
           mountPath: /tmp/test-volume
-      volumes:
-        - name: localtime
-          hostPath:
-            path: /tmp/test-volume
-      restartPolicy: Always
----
-kind: ConfigMap
-apiVersion: v1
-metadata:
-  name: MY_NAME
-  namespace: default
-data:
-  key: MY_NAME
-  value: "hi"
