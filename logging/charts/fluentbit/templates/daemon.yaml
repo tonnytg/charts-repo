@@ -21,7 +21,6 @@ spec:
         prometheus.io/scrape: "true"
         prometheus.io/port: "2020"
         prometheus.io/path: /api/v1/metrics/prometheus
-        timestamp: {{ now | date "20060102150405" | quote}}
     spec:
       serviceAccountName: {{ .Values.app.name }}
       terminationGracePeriodSeconds: 10
