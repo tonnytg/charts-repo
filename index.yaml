@@ -3,7 +3,7 @@ entries:
   logging:
   - apiVersion: v2
     appVersion: 1.16.0
-    created: "2021-11-16T23:37:02.703513-03:00"
+    created: "2021-11-16T23:49:18.409951-03:00"
     dependencies:
     - condition: fluentbit.enabled
       name: fluentbit
@@ -12,10 +12,10 @@ entries:
       name: tester
       repository: file://charts/tester
     description: A Helm chart for Kubernetes
-    digest: b0236a8d15cdf92b3b51a6e8ac31fe66a9449db17e7ddc21696f4032f8eef3f4
+    digest: a8dc15970c8270f481edcd36847803ded91c1839a5e34cded841a27f1b309803
     name: logging
     type: application
     urls:
-    - logging-0.1.0.tgz
-    version: 0.1.0
-generated: "2021-11-16T23:37:02.701852-03:00"
+    - logging-0.2.0.tgz
+    version: 0.2.0
+generated: "2021-11-16T23:49:18.408061-03:00"
