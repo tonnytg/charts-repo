@@ -1,0 +1,12 @@
+# Default values for tester.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+config:
+  autoscaling:
+   enabled: true
+
+app:
+  name: test-logger
+  spec:
+    replicas: 3
