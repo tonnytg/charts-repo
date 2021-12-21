@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  servicex
+spec:
+  selector:
+    matchLabels:
+      app: servicex
+  template:
+    metadata:
+      labels:
+        app:  servicex
+        version: "200"
+    spec:
+      # initContainers:
+        # Init containers are exactly like regular containers, except:
+          # - Init containers always run to completion.
+          # - Each init container must complete successfully before the next one starts.
+      containers:
+      - name:  servicex
+        image:  wesleywillians/circuit-breaker-example-go:latest
+        ports:
+        - containerPort: 8000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  servicex-error
+spec:
+  selector:
+    matchLabels:
+      app: servicex
+  template:
+    metadata:
+      labels:
+        app:  servicex
+        version: "504"
+    spec:
+      # initContainers:
+        # Init containers are exactly like regular containers, except:
+          # - Init containers always run to completion.
+          # - Each init container must complete successfully before the next one starts.
+      containers:
+      - name:  servicex
+        image:  wesleywillians/circuit-breaker-example-go:latest
+        ports:
+        - containerPort: 8000
+        env:
+          - name: error
+            value: "yes"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: servicex-service
+spec:
+  selector:
+    app: servicex
+  type: ClusterIP
+  ports:
+  - name: httpport
+    protocol: TCP
+    port: 80
+    targetPort: 8000
